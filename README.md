@@ -16,3 +16,14 @@ df = df1.join(df2,["account_key"])
 Note: 
   
   - Use **['colname']** instead of **df1.col == df2.col**
+  
+### Rank Correlation
+
+Get the rank correlation.
+
+```python
+firstRDD = benchmark.rdd.map(lambda x: x['prediction'])
+secondRDD = benchmark.rdd.map(lambda x: x['score'])
+corr = Statistics.corr(firstRDD, secondRDD, method="spearman")
+print("The rank correlation between SAS and Spark Prediction = %g" % corr) 
+```
