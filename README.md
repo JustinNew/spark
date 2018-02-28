@@ -27,3 +27,14 @@ secondRDD = benchmark.rdd.map(lambda x: x['score'])
 corr = Statistics.corr(firstRDD, secondRDD, method="spearman")
 print("The rank correlation between SAS and Spark Prediction = %g" % corr) 
 ```
+
+### Rank () Over ()
+
+Add a 'rank' column:
+
+```python
+from pyspark.sql.functions import *
+from pyspark.sql.window import Window
+
+ranked =  df.withColumn("rank", dense_rank().over(Window.partitionBy("A").orderBy(desc("C"))))
+```
