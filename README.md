@@ -38,3 +38,15 @@ from pyspark.sql.window import Window
 
 ranked =  df.withColumn("rank", dense_rank().over(Window.partitionBy("A").orderBy(desc("C"))))
 ```
+
+### Add New Columns
+
+```python
+from pyspark.sql.functions import lit
+
+df = sqlContext.createDataFrame(
+    [(1, "a", 23.0), (3, "B", -23.0)], ("x1", "x2", "x3"))
+
+df_with_x4 = df.withColumn("x4", lit(0))
+df_with_x4.show()
+```
