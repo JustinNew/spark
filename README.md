@@ -50,3 +50,16 @@ df = sqlContext.createDataFrame(
 df_with_x4 = df.withColumn("x4", lit(0))
 df_with_x4.show()
 ```
+
+### Write DataFrame into Hive
+
+**all_predictions** is a DataFrame in PySpark.
+
+```python
+try:
+    sqlContext.sql("use " + database_name)
+    all_predictions.write.format("orc").saveAsTable('ce_20180302_train_driver_spark', mode="overwrite")
+except Exception, err:
+    rt.print_exc()
+    raise Exception("writing to Hive table fails")
+```
