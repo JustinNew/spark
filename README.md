@@ -67,5 +67,11 @@ except Exception, err:
 ### Cast column to new type
 
 ```python
+condition = lambda col: 'F_' in col
+listcols = df.select(*filter(condition,df.columns)).columns
+
+for colname in listcols:
+    df = df.withColumn("temp", df[colname].cast("int")).drop(colname).withColumnRenamed("temp", colname)
+	
 df2 = df.withColumn("yearTmp", df.year.cast("int")).drop("year").withColumnRenamed("yearTmp", "year")
 ```
