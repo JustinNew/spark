@@ -63,3 +63,9 @@ except Exception, err:
     rt.print_exc()
     raise Exception("writing to Hive table fails")
 ```
+
+### Cast column to new type
+
+```python
+df2 = df.withColumn("yearTmp", df.year.cast("int")).drop("year").withColumnRenamed("yearTmp", "year")
+```
