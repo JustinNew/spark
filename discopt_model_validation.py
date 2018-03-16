@@ -20,10 +20,6 @@ from pyspark.ml.evaluation import RegressionEvaluator
 
 import sys, re
 
-# Copy program from local to remote server:
-# scp discopt_model_validation.py gcp-ddh-dev.tst.kohls.com:/home/tkg8w58/projects/DiscountTree
-# scp discopt_model_validation.py 10.206.52.22:/home/tkg8w58/projects/DiscountTree
-
 # Run the program as:
 command_line = "nohup spark-submit --queue adhoc --executor-memory 40G --num-executors 6 discopt_model_validation.py 'validation' 'db_sas_discount' 'ce_20180302_train' 'ce_20180302_score' '15,20,30' 'true' >& discopt_model_validation.out &"
 

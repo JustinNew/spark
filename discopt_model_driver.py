@@ -23,10 +23,6 @@ from pyspark.mllib.stat import Statistics
 
 import sys, re
 
-# Copy program from local to remote server:
-# scp discopt_model_driver.py gcp-ddh-dev.tst.kohls.com:/home/tkg8w58/projects/DiscountTree
-# scp discopt_model_driver.py 10.206.52.22:/home/tkg8w58/projects/DiscountTree
-
 # Run the program as:
 command_line = "nohup spark-submit --queue adhoc --executor-memory 40G --num-executors 6 discopt_model_driver.py 'DTO_Tree' 'db_sas_discount' 'ce_20180302_train' 'ce_20180302_score' 'decisiontree' '15,20,30' 'true' >& discopt_model_driver.out &"
 
