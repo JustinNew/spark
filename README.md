@@ -75,3 +75,11 @@ for colname in listcols:
 	
 df2 = df.withColumn("yearTmp", df.year.cast("int")).drop("year").withColumnRenamed("yearTmp", "year")
 ```
+
+### Save ML Model
+
+```
+modelPath = "disopt_model_" + str(i)
+model.write().overwrite().save(modelPath)
+```
+
