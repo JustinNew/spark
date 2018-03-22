@@ -76,10 +76,16 @@ for colname in listcols:
 df2 = df.withColumn("yearTmp", df.year.cast("int")).drop("year").withColumnRenamed("yearTmp", "year")
 ```
 
-### Save ML Model
+### Save and Load ML Model
 
 ```
+from pyspark.ml.regression import DecisionTreeRegressor, RandomForestRegressor, DecisionTreeRegressionModel, RandomForestRegressionModel
+
+dt = DecisionTreeRegressor(featuresCol="features", labelCol="trgt", maxDepth=8, minInstancesPerNode=2000)
+model = dt.fit(trainData)
 modelPath = "disopt_model_" + str(i)
 model.write().overwrite().save(modelPath)
+
+dtLoad = DecisionTreeRegressionModel.load(modelPath)
 ```
 
