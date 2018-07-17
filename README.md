@@ -13,6 +13,12 @@ https://github.com/apache/spark/tree/master/examples/src/main/python
   - Check Jobs: yarn application -list
   - Kill Jobs: yarn application -kill jobid
 
+### Copy File From Local To Hadoop
+
+```bash
+hadoop fs -put /path/in/linux /hdfs/path
+```
+
 ### Join Two DataFrames
 
 ```python
