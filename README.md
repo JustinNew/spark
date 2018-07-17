@@ -84,7 +84,7 @@ df2 = df.withColumn("yearTmp", df.year.cast("int")).drop("year").withColumnRenam
 
 ### Save and Load ML Model
 
-```
+```python
 from pyspark.ml.regression import DecisionTreeRegressor, RandomForestRegressor, DecisionTreeRegressionModel, RandomForestRegressionModel
 
 dt = DecisionTreeRegressor(featuresCol="features", labelCol="trgt", maxDepth=8, minInstancesPerNode=2000)
@@ -95,3 +95,15 @@ model.write().overwrite().save(modelPath)
 dtLoad = DecisionTreeRegressionModel.load(modelPath)
 ```
 
+### PySpark Schema
+
+```python
+schema = StructType([
+    StructField("A", IntegerType(), True),
+    StructField("B", DoubleType(), True),
+    StructField("C", StringType(), True)
+])
+```
+
+Note:
+  - **True** means the column allows null values.
