@@ -96,9 +96,9 @@ foo_df = df.filter( (df.foo==1) & (df.bar.isNull()) )
 ### Row_number
 
 ```python
-from pyspark.sql.functions import desc
-
-F.rowNumber().over(Window.partitionBy("driver").orderBy(desc("unit_count"))
+from pyspark.sql.functions import desc, row_number 
+  
+driver = driver.withColumn('rowNumber', row_number().over(Window.partitionBy("account_key").orderBy(col("prediction").desc())))
 ```
 
 ### Save and Load ML Model
