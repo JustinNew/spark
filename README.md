@@ -80,12 +80,25 @@ except Exception, err:
 
 ```python
 condition = lambda col: 'F_' in col
-listcols = df.select(*filter(condition,df.columns)).columns
+listcols = df.select(*filter(condition, df.columns)).columns
 
 for colname in listcols:
     df = df.withColumn("temp", df[colname].cast("int")).drop(colname).withColumnRenamed("temp", colname)
 	
 df2 = df.withColumn("yearTmp", df.year.cast("int")).drop("year").withColumnRenamed("yearTmp", "year")
+```
+
+### filter by column value
+```python
+foo_df = df.filter( (df.foo==1) & (df.bar.isNull()) )
+```
+
+### Row_number
+
+```python
+from pyspark.sql.functions import desc
+
+F.rowNumber().over(Window.partitionBy("driver").orderBy(desc("unit_count"))
 ```
 
 ### Save and Load ML Model
