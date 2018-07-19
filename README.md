@@ -60,11 +60,19 @@ from pyspark.sql.functions import exp
 df = sqlContext.createDataFrame(
     [(1, "a", 23.0), (3, "B", -23.0)], ("x1", "x2", "x3"))
 
-# Add a column with all '0'
+##### Add a column with all '0'
 df_with_x4 = df.withColumn("x4", lit(0))
 
-# Transfer column 'x3' with exponential.
-df_with_x5 = df_with_x4.withColumn("x5", exp("x3"))
+##### Add new column with math and ordering
+def func(pred1, pred2, Discount):
+    if Discount == cur_discount:
+        return pred1 - pred2
+    else:
+        return 0
+
+func_udf = udf(func, IntegerType())
+df_discount = df_discount.withColumn('dif_pred1_pred2',func_udf(df_discount['prediction_1'], df_discount['prediction_2'], df_discount['Discount']))
+df_discount = df_discount.withColumn('index', orderBy(col('diff_pred1_pred2').desc()))
 ```
 
 ### Represent a column name with a variable
