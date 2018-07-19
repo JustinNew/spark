@@ -63,7 +63,7 @@ df = sqlContext.createDataFrame(
 ##### Add a column with all '0'
 df_with_x4 = df.withColumn("x4", lit(0))
 
-ddff = ddff.withColumn(colname, ddff[colname].cast("int"))
+ddff = ddff.withColumn('Discount, ddff['discount'].cast("int"))
 
 ##### Add new column with math and ordering
 def func(pred1, pred2, Discount):
@@ -83,7 +83,8 @@ df_discount = df_discount.withColumn('index', orderBy(col('diff_pred1_pred2').de
 from pyspark.sql.functions import col
 
 i = 15
-df_discount[i].withColumn(col('prediction_' + str(i)), 'prediction')
+t_d = 'discount_' + str(i)
+df_discount.withColumn(t_d, df_discount.discount)
 ```
 
 ### Write DataFrame into Hive
