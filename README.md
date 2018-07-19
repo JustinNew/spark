@@ -63,6 +63,8 @@ df = sqlContext.createDataFrame(
 ##### Add a column with all '0'
 df_with_x4 = df.withColumn("x4", lit(0))
 
+ddff = ddff.withColumn(colname, ddff[colname].cast("int"))
+
 ##### Add new column with math and ordering
 def func(pred1, pred2, Discount):
     if Discount == cur_discount:
