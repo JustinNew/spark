@@ -67,6 +67,15 @@ df_with_x4 = df.withColumn("x4", lit(0))
 df_with_x5 = df_with_x4.withColumn("x5", exp("x3"))
 ```
 
+### Represent a column name with a variable
+
+```python
+from pyspark.sql.functions import col
+
+i = 15
+df_discount[i].withColumn(col('prediction_' + str(i)), 'prediction')
+```
+
 ### Write DataFrame into Hive
 
 **all_predictions** is a DataFrame in PySpark.
