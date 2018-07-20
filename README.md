@@ -19,6 +19,10 @@ https://github.com/apache/spark/tree/master/examples/src/main/python
 hadoop fs -put /path/in/linux /hdfs/path
 ```
 
+### Python In PySpark
+
+- In PySpark, we can write and have Python codes. But be careful, do not confuse Spark with Python codes. In other words, list operations, string operations, etc. can not be on the line of DataFrmame or SQL.
+
 ### Join Two DataFrames
 
 ```python
