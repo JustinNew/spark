@@ -114,6 +114,8 @@ for colname in listcols:
     df = df.withColumn("temp", df[colname].cast("int")).drop(colname).withColumnRenamed("temp", colname)
 	
 df2 = df.withColumn("yearTmp", df.year.cast("int")).drop("year").withColumnRenamed("yearTmp", "year")
+
+df_new = df.select(['col1', 'col2', 'col3'])
 ```
 
 ### filter by column value
