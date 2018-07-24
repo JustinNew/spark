@@ -131,6 +131,11 @@ from pyspark.sql.functions import desc, row_number
 driver = driver.withColumn('rowNumber', row_number().over(Window.partitionBy("account_key").orderBy(col("prediction").desc())))
 ```
 
+### Get Sum Of Column
+```python
+df_final.groupBy().sum().show()
+```
+
 ### Save and Load ML Model
 
 ```python
