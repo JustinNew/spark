@@ -161,3 +161,20 @@ schema = StructType([
 
 Note:
   - **True** means the column allows null values.
+  
+### Read Json File
+```python
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('config', help='json config file')
+    args = parser.parse_args()
+    return args
+
+if __name__ == '__main__':
+    args = parse_arguments()
+    print(args)
+    try:
+        config = json.load(open(args.config))
+    except ValueError:
+        print("Decoding JSON has failed.")
+```
