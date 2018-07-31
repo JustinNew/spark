@@ -178,3 +178,12 @@ if __name__ == '__main__':
     except ValueError:
         print("Decoding JSON has failed.")
 ```
+
+### Compare Two Columns And Print Number Of Matches
+
+```python
+import pyspark.sql.functions as F
+
+df = df.withColumn('diff', F.when(F.col("dscnt1") == F.col("dscnt2"), 1).otherwise(0))
+df.select('diff').groupBy().sum().show()
+```
